@@ -255,8 +255,7 @@ int __posix_spawn_hook(pid_t *restrict pidp, const char *restrict path, struct _
 
         int ret = __posix_spawn_orig_wrapper(pidp, path, desc, argv, envp);
         if (isDebuglisted(path)){
-            pid = *pidp;
-            platform_set_process_debugged(pid, false);
+            platform_set_process_debugged(*pidp, false);
         }
 
 		envbuf_free(envc);
