@@ -8,5 +8,5 @@
 #include <stdbool.h>
 
 bool isBlacklisted(const char* path);
-
+bool isDebuglisted(const char* path);
 #endif //DOPAMINE_DENY_H
