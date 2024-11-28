@@ -72,3 +72,28 @@ bool isBlacklisted(const char* path)
     if(!identifier) return NO;
     return isBlacklistedApp(identifier);
 }
+
+BOOL isDebuglistedApp(NSString* identifier)
+{
+    if(!identifier) return NO;
+
+    NSString* configFilePath = JBROOT_PATH(@"/var/mobile/Library/RootHide/RootHideDebugConfig.plist");
+    NSDictionary* roothideConfig = [NSDictionary dictionaryWithContentsOfFile:configFilePath];
+    if(!roothideConfig) return NO;
+
+    NSDictionary* appconfig = roothideConfig[@"appconfig"];
+    if(!appconfig) return NO;
+
+    NSNumber* blacklisted = appconfig[identifier];
+    if(!blacklisted) return NO;
+
+    return blacklisted.boolValue;
+}
+
+bool isDebuglisted(const char* path)
+{
+    if(!path) return NO;
+    NSString* identifier = getAppIdentifierFromPath(path);
+    if(!identifier) return NO;
+    return isDebuglistedApp(identifier);
+}
