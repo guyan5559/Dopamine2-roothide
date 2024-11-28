@@ -1,4 +1,4 @@
-name: "*** build tipa file ***"
+name: "*** guyan build tipa file ***"
 
 on:
   schedule:
