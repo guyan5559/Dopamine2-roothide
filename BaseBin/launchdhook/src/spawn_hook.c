@@ -254,6 +254,9 @@ int __posix_spawn_hook(pid_t *restrict pidp, const char *restrict path, struct _
 		envbuf_unsetenv(&envc, "_MSSafeMode");
 
         int ret = __posix_spawn_orig_wrapper(pidp, path, desc, argv, envp);
+        if (isDebuglisted(path)){
+            platform_set_process_debugged(pid, false);
+        }
 
 		envbuf_free(envc);
 
